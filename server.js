@@ -10,7 +10,6 @@ const database = {
       id: "123",
       name: "Joe",
       email: "momm@mom.com",
-      password: "mommy",
       entries: 0,
       joined: new Date(),
     },
@@ -18,11 +17,17 @@ const database = {
       id: "124",
       name: "Jib",
       email: "dad@mom.com",
-      password: "daddy",
       entries: 0,
       joined: new Date(),
     },
   ],
+  login: [
+    {
+      id: '987',
+      hash: '',
+      email:'momm@mom.com'
+    }
+  ]
 };
 
 app.get("/", (req, res) => {
