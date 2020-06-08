@@ -1,10 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
+const cors = require("cors")
 
 const app = express();
-
 app.use(bodyParser.json());
+app.use(cors)
 const database = {
   users: [
     {
@@ -36,7 +37,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signin", (req, res) => {
-  // Load hash from your password DB.
   bcrypt.compare(
     "ommy",
     "$2a$10$igi7U3OOSeUWWdFvNuc3.O8Prq7bzAim9iPUf/2FEzC0pJhQK6o1O",
