@@ -45,14 +45,12 @@ app.post("/signin", (req, res) => {
     "ommy",
     "$2a$10$igi7U3OOSeUWWdFvNuc3.O8Prq7bzAim9iPUf/2FEzC0pJhQK6o1O",
     function (err, res) {
-      console.log("firstguess", res);
     }
   );
   bcrypt.compare(
     "veggies",
     "$2a$10$igi7U3OOSeUWWdFvNuc3.O8Prq7bzAim9iPUf/2FEzC0pJhQK6o1O",
     function (err, res) {
-      console.log("secondguess", res);
     }
   );
 
@@ -60,7 +58,7 @@ app.post("/signin", (req, res) => {
     req.body.email === database.users[0].email &&
     req.body.password === database.users[0].password
   ) {
-    res.json("success");
+    res.json(database.users[0]);
   } else {
     res.status(400).json("error");
   }
