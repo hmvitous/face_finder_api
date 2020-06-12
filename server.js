@@ -2,6 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
+const knex = require("knex");
+
+const db = knex({
+  client: "pg",
+  connection: {
+    host: "127.0.0.1",
+    user: "hunterv",
+    password: "",
+    database: "face-finder",
+  },
+});
 
 const app = express();
 
@@ -44,14 +55,12 @@ app.post("/signin", (req, res) => {
   bcrypt.compare(
     "ommy",
     "$2a$10$igi7U3OOSeUWWdFvNuc3.O8Prq7bzAim9iPUf/2FEzC0pJhQK6o1O",
-    function (err, res) {
-    }
+    function (err, res) {}
   );
   bcrypt.compare(
     "veggies",
     "$2a$10$igi7U3OOSeUWWdFvNuc3.O8Prq7bzAim9iPUf/2FEzC0pJhQK6o1O",
-    function (err, res) {
-    }
+    function (err, res) {}
   );
 
   if (
@@ -66,14 +75,12 @@ app.post("/signin", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { email, name, password } = req.body;
-
-  database.users.push({
-    id: "125",
-    name: name,
+  db('users').insert({
     email: email,
-    entries: 0,
-    joined: new Date(),
-  });
+    name: name,
+    joined: new Date()
+  }).then(console.log)
+
   res.json(database.users[database.users.length - 1]);
 });
 
