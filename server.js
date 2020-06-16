@@ -28,9 +28,7 @@ app.get("/", (req, res) => {
   res.send(database.users);
 });
 
-app.post("/signin", (req, res) => {
-  signin.handleSignIn(req, res, db, bcrypt);
-});
+app.post("/signin", signin.handleSignIn(db, bcrypt));
 
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
